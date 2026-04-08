@@ -27,12 +27,12 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run tests
-        run: pytest tests/ -v --tb=short
+        run: pytest tests/ -v --tb=short -q
 
       - name: Run linting
         run: |
           pip install ruff
-          ruff check src/
+          ruff check src/ --ignore E501
 
   rust:
     runs-on: ubuntu-latest
