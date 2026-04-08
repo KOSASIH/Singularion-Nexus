@@ -1,0 +1,38 @@
+# Singularion Nexus - Development Configuration
+
+node_id: "dev-node-001"
+mesh_port: 9090
+api_port: 8080
+max_peers: 64
+quantum_backend: "simulator"
+zkp_proving_system: "groth16"
+enable_collective_bargaining: true
+enable_iot_gateway: true
+log_level: "DEBUG"
+
+mesh:
+  bootstrap_peers:
+    - "localhost:9091"
+    - "localhost:9092"
+  gossip_interval_ms: 1000
+  heartbeat_interval_s: 30
+
+quantum:
+  backend: "simulator"
+  n_qubits: 8
+  shots: 1024
+
+zkp:
+  default_system: "groth16"
+  batch_size: 100
+  proof_cache_size: 10000
+
+iot:
+  mqtt_port: 8883
+  tls_enabled: true
+  biometric_threshold: 0.95
+
+bargaining:
+  min_cluster_size: 10
+  max_cluster_size: 10000
+  negotiation_timeout_s: 86400

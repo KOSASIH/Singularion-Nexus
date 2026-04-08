@@ -1,0 +1,32 @@
+# Singularion Nexus - Production Configuration
+
+node_id: "${NODE_ID}"
+mesh_port: 9090
+api_port: 8080
+max_peers: 1024
+quantum_backend: "ibm_quantum"
+zkp_proving_system: "plonk"
+enable_collective_bargaining: true
+enable_iot_gateway: true
+log_level: "WARNING"
+
+mesh:
+  gossip_interval_ms: 500
+  heartbeat_interval_s: 15
+
+quantum:
+  backend: "ibm_quantum"
+  n_qubits: 127
+  shots: 4096
+  optimization_level: 3
+
+zkp:
+  default_system: "plonk"
+  batch_size: 1000
+  proof_cache_size: 1000000
+  gpu_acceleration: true
+
+iot:
+  mqtt_port: 8883
+  tls_enabled: true
+  biometric_threshold: 0.98

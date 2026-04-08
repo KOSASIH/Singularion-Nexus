@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package singularion.nexus.v1;
+
+// PEA Mesh Protocol Messages
+
+message PeerInfo {
+  string peer_id = 1;
+  string address = 2;
+  int32 port = 3;
+  repeated string capabilities = 4;
+  double reputation_score = 5;
+}
+
+message MeshMessage {
+  string message_id = 1;
+  string message_type = 2;
+  string sender_id = 3;
+  bytes payload = 4;
+  int32 ttl = 5;
+  int64 timestamp_unix = 6;
+}
+
+message Intent {
+  string intent_id = 1;
+  string pea_id = 2;
+  string intent_type = 3;
+  string domain = 4;
+  map<string, string> parameters = 5;
+  map<string, string> constraints = 6;
+  int32 priority = 7;
+}
+
+message MicroContract {
+  string contract_id = 1;
+  repeated string parties = 2;
+  string domain = 3;
+  string status = 4;
+  bytes proof_data = 5;
+}
+
+// Service definitions
+service NexusNode {
+  rpc SubmitIntent(Intent) returns (IntentResponse);
+  rpc JoinMesh(PeerInfo) returns (JoinResponse);
+  rpc ProposeContract(MicroContract) returns (ContractResponse);
+}
+
+message IntentResponse {
+  string status = 1;
+  string routed_id = 2;
+}
+
+message JoinResponse {
+  bool accepted = 1;
+  repeated PeerInfo bootstrap_peers = 2;
+}
+
+message ContractResponse {
+  string contract_id = 1;
+  string status = 2;
+}
