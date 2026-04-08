@@ -1,1 +1,3 @@
-"""Quantum-Enhanced LLM Engine - Hybrid quantum-classical language models."""
+"""Quantum-Enhanced LLM Engine."""
+from .engine import QuantumLLMEngine, QuantumBackend, ParsedIntent, NegotiationStrategy, QuantumStateVector
+__all__ = ["QuantumLLMEngine", "QuantumBackend", "ParsedIntent", "NegotiationStrategy", "QuantumStateVector"]
